@@ -129,8 +129,8 @@ You can also define plugins that should be installed with the variable `etherpad
 
 ```yaml
 etherpad_plugins:
-  - FIRST_PLUGIN
-  - SECOND_PLUGIN
+  - YOUR_FIRST_PLUGIN_HERE
+  - YOUR_SECOND_PLUGIN_HERE
 ```
 
 ### Extending the configuration
