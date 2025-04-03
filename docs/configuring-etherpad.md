@@ -123,6 +123,16 @@ etherpad_default_pad_text: |
   Get involved with Etherpad at https://etherpad.org
 ```
 
+### Define plugins to install (optional)
+
+You can also define plugins that should be installed with the variable `etherpad_default_pad_text`. Etherpad plugins can also be managed from the admin page (if enabled). You can view a list of all Etherpad plugins [here](https://static.etherpad.org/index.html). To specify plugins to install, add the following configuration to your `vars.yml` file (adapt to your needs). No plugins are installed by default.
+
+```yaml
+etherpad_plugins:
+  - FIRST_PLUGIN
+  - SECOND_PLUGIN
+```
+
 ### Extending the configuration
 
 There are some additional things you may wish to configure about the component.
