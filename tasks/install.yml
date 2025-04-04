@@ -46,6 +46,10 @@
     owner: "{{ etherpad_user_uid }}"
     group: "{{ etherpad_user_gid }}"
 
+- name: Plugins list
+  ansible.builtin.debug:
+    msg: "ETHERPAD_PLUGINS={{ etherpad_plugins|join(' ') }}"
+
 - name: Ensure Etherpad container image is pulled
   community.docker.docker_image:
     name: "{{ etherpad_container_image }}"
