@@ -48,7 +48,7 @@
 
 - name: List Etherpad plugins
   ansible.builtin.debug:
-    msg: "ETHERPAD_PLUGINS={{ etherpad_plugins|join(' ') }}"
+    msg: "ETHERPAD_PLUGINS=\"{{ etherpad_plugins|join(' ') }}\""
   when: true
 
 - name: Ensure Etherpad container image is pulled
@@ -58,7 +58,7 @@
     force_source: "{{ etherpad_container_image_force_pull if ansible_version.major > 2 or ansible_version.minor >= 8 else omit }}"
     force: "{{ omit if ansible_version.major > 2 or ansible_version.minor >= 8 else etherpad_container_image_force_pull }}"
     build:
-      args: { "ETHERPAD_PLUGINS": "{{ etherpad_plugins|join(' ') }}" }
+      args: { ETHERPAD_PLUGINS: "{{ etherpad_plugins|join(' ') }}" }
   when: "not etherpad_container_image_self_build | bool"
   register: result
   retries: "{{ devture_playbook_help_container_retries_count }}"
@@ -67,6 +67,11 @@
 
 - when: etherpad_container_image_self_build | bool
   block:
+    - name: List Etherpad plugins
+      ansible.builtin.debug:
+        msg: |
+          ETHERPAD_PLUGINS="{{ etherpad_plugins|join(' ') }}"
+
     - name: Ensure Etherpad repository is present on self-build
       ansible.builtin.git:
         repo: "{{ etherpad_container_image_self_build_repo }}"
