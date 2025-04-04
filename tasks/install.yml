@@ -80,7 +80,7 @@
           {{ devture_systemd_docker_base_host_command_docker }} build \
           -t "{{ etherpad_container_image }}" \
           -f Dockerfile \
-          --build-arg ETHERPAD_PLUGINS="{{ etherpad_plugins|join(' ') }}"
+          --build-arg ETHERPAD_PLUGINS="{{ etherpad_plugins|join(' ') }}" \
           .
       environment:
         DOCKER_BUILDKIT: 1
